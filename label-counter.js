@@ -29,7 +29,7 @@
 			labelClass: "purple-lable-count",
 			color: "#78149e",
 			tooltip: "Waiting Feedback"
-		}
+		},
 		"card-label-blue": {
 			inUsed: true,
 			labelClass: "blue-lable-count",
@@ -49,32 +49,15 @@
 			tooltip: "Completed"
 		}
 	};
-	
-	var labelColor = {
-    	"new-label": "#4d4d4d",
-    	"in-progress-label": "#ad9900",
-    	"waiting-feedback-label": "#78149e",
-    	"feedbacked-label": "#005282",
-    	"blocked-label": "#9c1f0e",
-    	"completed-label": "#388628"
-    };
 
-    var labelTip = {
-    	"new-label": "New",
-    	"in-progress-label": "In Progress",
-    	"waiting-feedback-label": "Waiting Feedback",
-    	"feedbacked-label": "Feedbacked",
-    	"blocked-label": "Blocked",
-    	"completed-label": "Completed"
-    };
+	var getStatisticSpan = function (labelClass, labelCount) {
+		
 	
-	var getStatisticSpan = function (labelClass, labelContent) {
-    	var elemSpan = document.createElement('span');
-		elemSpan.className = labelClass;
-		elemSpan.innerHTML = labelContent;
-		elemSpan.title = labelTip[labelClass];
-		elemSpan.style.cssText = 'border-radius: 3px;color: #fff; width: 35px; display: inline-block; text-align: center; margin-right: 5px;background-color: ' + labelColor[labelClass] + ';';
-
+		var elemSpan = document.createElement('span');
+		elemSpan.className = labels[labelClass].labelClass;
+		elemSpan.innerHTML = labelCount;
+		elemSpan.title = labels[labelClass].tooltip;
+		elemSpan.style.cssText = 'border-radius: 3px;color: #fff; width: 35px; display: inline-block; text-align: center; margin-right: 5px;background-color: ' + labels[labelClass].color + ';';
 		return elemSpan;
     };
 	
@@ -86,13 +69,11 @@
             let statisticsDiv = document.createElement('div');
             statisticsDiv.className = "custom-card-statistics";
             statisticsDiv.style.cssText = "text-align: center; margin-bottom: 5px;";
-            statisticsDiv.appendChild(getStatisticSpan('new-label', card.getElementsByClassName('card-label-black').length));
-            statisticsDiv.appendChild(getStatisticSpan('in-progress-label', card.getElementsByClassName('card-label-yellow').length));
-            statisticsDiv.appendChild(getStatisticSpan('waiting-feedback-label', card.getElementsByClassName('card-label-purple').length));
-            statisticsDiv.appendChild(getStatisticSpan('feedbacked-label', card.getElementsByClassName('card-label-blue').length));
-            statisticsDiv.appendChild(getStatisticSpan('blocked-label', card.getElementsByClassName('card-label-red').length));
-            statisticsDiv.appendChild(getStatisticSpan('completed-label', card.getElementsByClassName('card-label-green').length));
-
+			for (let label in labels) {
+				if (labels[label].inUsed) {
+					statisticsDiv.appendChild(getStatisticSpan(label), card.getElementsByClassName(label).length);
+				}
+			}
             card.getElementsByClassName('list-cards')[0].insertAdjacentElement('afterbegin', statisticsDiv);
         }
     });
