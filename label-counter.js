@@ -45,7 +45,7 @@
 		"card-label-green":  {
 			inUsed: true,
 			labelClass: "green-lable-count",
-			color: "#9c1f0e",
+			color: "#388628",
 			tooltip: "Completed"
 		}
 	};
