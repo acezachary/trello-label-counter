@@ -11,9 +11,46 @@
 (function() {
 	'use strict';
 
-    window.addEventListener('load', function() {
-    // your code here
-        var labelColor = {
+	var labels = {
+		"card-label-black": {
+			inUsed: true,
+			labelClass: "black-lable-count",
+			color: "#4d4d4d",
+			tooltip: "New"
+		}, 
+		"card-label-yellow": {
+			inUsed: true, 
+			labelClass: "yellow-lable-count",
+			color: "#ad9900",
+			tooltip: "In Progress"
+		},
+		"card-label-purple": {
+			inUsed: true,
+			labelClass: "purple-lable-count",
+			color: "#78149e",
+			tooltip: "Waiting Feedback"
+		}
+		"card-label-blue": {
+			inUsed: true,
+			labelClass: "blue-lable-count",
+			color: "#005282",
+			tooltip: "Feedbacked"
+		},
+		"card-label-red":  {
+			inUsed: true,
+			labelClass: "red-lable-count",
+			color: "#9c1f0e",
+			tooltip: "Blocked"
+		},
+		"card-label-green":  {
+			inUsed: true,
+			labelClass: "green-lable-count",
+			color: "#9c1f0e",
+			tooltip: "Completed"
+		}
+	};
+	
+	var labelColor = {
     	"new-label": "#4d4d4d",
     	"in-progress-label": "#ad9900",
     	"waiting-feedback-label": "#78149e",
@@ -30,8 +67,8 @@
     	"blocked-label": "Blocked",
     	"completed-label": "Completed"
     };
-
-    var getStatisticSpan = function (labelClass, labelContent) {
+	
+	var getStatisticSpan = function (labelClass, labelContent) {
     	var elemSpan = document.createElement('span');
 		elemSpan.className = labelClass;
 		elemSpan.innerHTML = labelContent;
@@ -40,7 +77,8 @@
 
 		return elemSpan;
     };
-
+	
+    window.addEventListener('load', function() {
     var cards = Array.from(document.getElementsByClassName('list-wrapper'));
     var cardStatistics = cards.map(card => {
         let cardsContainer = card.getElementsByClassName('list-cards')[0];
