@@ -43,18 +43,20 @@
 
     var cards = Array.from(document.getElementsByClassName('list-wrapper'));
     var cardStatistics = cards.map(card => {
-    	let statisticsDiv = document.createElement('div');
-    	statisticsDiv.className = "custom-card-statistics";
-        statisticsDiv.style.cssText = "text-align: center; margin-bottom: 5px;";
-    	statisticsDiv.appendChild(getStatisticSpan('new-label', card.getElementsByClassName('card-label-black').length));
-    	statisticsDiv.appendChild(getStatisticSpan('in-progress-label', card.getElementsByClassName('card-label-yellow').length));
-    	statisticsDiv.appendChild(getStatisticSpan('waiting-feedback-label', card.getElementsByClassName('card-label-purple').length));
-    	statisticsDiv.appendChild(getStatisticSpan('feedbacked-label', card.getElementsByClassName('card-label-blue').length));
-    	statisticsDiv.appendChild(getStatisticSpan('blocked-label', card.getElementsByClassName('card-label-red').length));
-    	statisticsDiv.appendChild(getStatisticSpan('completed-label', card.getElementsByClassName('card-label-green').length));
+        let cardsContainer = card.getElementsByClassName('list-cards')[0];
+        if (cardsContainer !== undefined) {  //Skip Last List: "Add a new list..."
+            let statisticsDiv = document.createElement('div');
+            statisticsDiv.className = "custom-card-statistics";
+            statisticsDiv.style.cssText = "text-align: center; margin-bottom: 5px;";
+            statisticsDiv.appendChild(getStatisticSpan('new-label', card.getElementsByClassName('card-label-black').length));
+            statisticsDiv.appendChild(getStatisticSpan('in-progress-label', card.getElementsByClassName('card-label-yellow').length));
+            statisticsDiv.appendChild(getStatisticSpan('waiting-feedback-label', card.getElementsByClassName('card-label-purple').length));
+            statisticsDiv.appendChild(getStatisticSpan('feedbacked-label', card.getElementsByClassName('card-label-blue').length));
+            statisticsDiv.appendChild(getStatisticSpan('blocked-label', card.getElementsByClassName('card-label-red').length));
+            statisticsDiv.appendChild(getStatisticSpan('completed-label', card.getElementsByClassName('card-label-green').length));
 
-    	card.getElementsByClassName('list-cards')[0].insertAdjacentElement('afterbegin', statisticsDiv);
-    	//TODO: Skip the last "Add a list..." card
+            card.getElementsByClassName('list-cards')[0].insertAdjacentElement('afterbegin', statisticsDiv);
+        }
     });
     }, false);
 })();
