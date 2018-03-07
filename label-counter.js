@@ -71,7 +71,7 @@
             statisticsDiv.style.cssText = "text-align: center; margin-bottom: 5px;";
 			for (let label in labels) {
 				if (labels[label].inUsed) {
-					statisticsDiv.appendChild(getStatisticSpan(label), card.getElementsByClassName(label).length);
+					statisticsDiv.appendChild(getStatisticSpan(label, card.getElementsByClassName(label).length));
 				}
 			}
             card.getElementsByClassName('list-cards')[0].insertAdjacentElement('afterbegin', statisticsDiv);
